@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/style.css" />
+        <title><%= title %></title>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#quotes">Quotes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Profile -->
+        <section id="profile">
+            <div class="container text-center">
+                <img src="img/SM.jpg" class="img-thumbnail rounded-circle" alt="Ini Kuon Ichinose" width="180" />
+                <h1 class="display-4">Andyoshino</h1>
+                <p class="lead">mahasiswa semester 5 | penggiat cp | sedang mempelajari teknologi stack MERN</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path
+                    fill="#fff"
+                    fill-opacity="1"
+                    d="M0,160L26.7,176C53.3,192,107,224,160,229.3C213.3,235,267,213,320,181.3C373.3,149,427,107,480,128C533.3,149,587,235,640,240C693.3,245,747,171,800,165.3C853.3,160,907,224,960,245.3C1013.3,267,1067,245,1120,224C1173.3,203,1227,181,1280,154.7C1333.3,128,1387,96,1413,80L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+                ></path>
+            </svg>
+        </section>
+
+        <!-- Quotes -->
+        <section id="quotes">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <h2>Quotes</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-2 fs-5 tempatQuotes">
+                    <% db.forEach(quote => { %>
+                    <div class="col-md-10 my-4 border border-success">
+                        <div class="p text-center">"<%= quote.quote %>"</div>
+                        <div class="p text-center">-<%= quote.nama %></div>
+                    </div>
+                    <% }) %>
+                </div>
+
+                <!-- Form input quotes -->
+                <div class="d-flex justify-content-center">
+                    <form action="/addquote" method="post">
+                        <div class="mb-3">
+                            <label for="quotes" class="form-label">Quotes</label>
+                            <input type="text" class="form-control" name="quote" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Nama Pengquote</label>
+                            <input type="text" class="form-control" name="nama" required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Tambahkan Quote!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path
+                    fill="#16181a"
+                    fill-opacity="1"
+                    d="M0,224L26.7,234.7C53.3,245,107,267,160,250.7C213.3,235,267,181,320,176C373.3,171,427,213,480,197.3C533.3,181,587,107,640,112C693.3,117,747,203,800,218.7C853.3,235,907,181,960,138.7C1013.3,96,1067,64,1120,69.3C1173.3,75,1227,117,1280,133.3C1333.3,149,1387,139,1413,133.3L1440,128L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+                ></path>
+            </svg>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center fs-4">
+            <div class="container pt-4">
+                <p>abcdefghijklmnopqrstuvwxyz</p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>

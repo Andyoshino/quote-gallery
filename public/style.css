@@ -1,0 +1,22 @@
+#profile .container {
+    padding-top: 10rem;
+    color: white;
+}
+
+#profile {
+    background-color: #16181a;
+}
+
+.quotes {
+    height: 600px;
+}
+
+#quotes .container {
+    padding: 10rem 0rem;
+}
+
+footer {
+    background-color: #16181a;
+    color: white;
+    padding-bottom: 4rem;
+}

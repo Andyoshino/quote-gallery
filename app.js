@@ -7,7 +7,7 @@ const fs = require("fs");
 //Building the app
 const app = express();
 //Settin the port
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Using 1 JSON file as database
 let dbQuotes = JSON.parse(fs.readFileSync("data.json"));

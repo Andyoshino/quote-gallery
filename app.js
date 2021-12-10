@@ -4,28 +4,13 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 
-let formatNumber = (number) => {
-    num = "" + number;
-    let formattedNum = "";
-    let cnt = 0;
-    for (let i = num.length - 1; i >= 0; i--) {
-        formattedNum = num[i] + formattedNum;
-        cnt = cnt + 1;
-        if (cnt % 3 === 0 && i > 0) formattedNum = "," + formattedNum;
-    }
-    return formattedNum;
-};
-
-//Building the app
+//Configuring the app
 const app = express();
 //Settin the port
 const port = process.env.PORT || 3000;
 
 //Using 1 JSON file as database
 let dbQuotes = JSON.parse(fs.readFileSync("data.json"));
-
-//Using 1 txt file as 'klik' database
-let counterKlik = parseInt(fs.readFileSync("dataKlik.txt"));
 
 //Using ejs as view engine
 app.set("view engine", "ejs");
@@ -41,11 +26,9 @@ app.use(express.static("public"));
 
 //Handling get method for '/'
 app.get("/", (req, res) => {
-    let formattedNumber = formatNumber(counterKlik);
     res.render("index", {
         title: "ini halaman utama",
         db: dbQuotes,
-        counterK: formattedNumber,
     });
 });
 
@@ -59,14 +42,8 @@ app.post("/addquote", (req, res) => {
     res.redirect("/#quotes");
 });
 
-app.post("/klik", (req, res) => {
-    counterKlik++;
-    fs.writeFileSync("dataKlik.txt", "" + counterKlik);
-    res.redirect("/#profile");
-});
-
 //Handling invalid request
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404);
     res.send("<h1>x_x ga ada pagenya</h1>");
 });
